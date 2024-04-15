@@ -1,4 +1,5 @@
 #include <stack>
+#include <string.h>
 #include <map>
 #include <string>
 #include <iostream>
@@ -6,6 +7,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
+#include <cmath>
 using namespace std;
 
 
@@ -17,6 +19,45 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
+
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+TreeNode* constructTree(const std::vector<int>& arr) {
+    if (arr.empty()) {
+        return nullptr;
+    }
+
+    TreeNode* root = new TreeNode(arr[0]);
+    std::queue<TreeNode*> nodeQueue;
+    nodeQueue.push(root);
+
+    int i = 1;
+    while (!nodeQueue.empty() && i < arr.size()) {
+        TreeNode* currNode = nodeQueue.front();
+        nodeQueue.pop();
+
+        if (arr[i] != INT_MIN) {
+            currNode->left = new TreeNode(arr[i]);
+            nodeQueue.push(currNode->left);
+        }
+        i++;
+
+        if (i < arr.size() && arr[i] != INT_MIN) {
+            currNode->right = new TreeNode(arr[i]);
+            nodeQueue.push(currNode->right);
+        }
+        i++;
+    }
+
+    return root;
+}
 
 ListNode* arrayToLinkedList(vector<int>arr) {
   // Create a dummy node to simplify head handling
@@ -599,7 +640,7 @@ public:
         }
         
 
-        return ideal<0?tasks.size():tasks.size()+ideal;
+    return ideal<0?tasks.size():tasks.size()+ideal;
     }
 
     ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
@@ -675,12 +716,209 @@ public:
         return -1; // return -1 if no duplicate found
         
     }
+
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        if(k<=1)
+            return 0;
+        int left = 0, right = 0, t = nums.size();
+        int product = 1, sub_arrays = 0;
+        product = 1;
+        while(right < t){
+            product *= nums[right];
+            while(product>=k)
+                product /= nums[left++];
+            sub_arrays += right - left +1;
+            right++;
+        }
+            return sub_arrays;
+
+    }
+
+    int maxSubarrayLength(vector<int>& nums, int k) {
+        int ans = 0,n = nums.size();
+        unordered_map<int,int> checker;
+        for(int l = 0, r = 0; r<n;r++){
+            checker[nums[r]]++;
+                if(checker[nums[r]]>k){
+                    while(nums[l]!=nums[r]){
+                        checker[nums[l]]--;
+                        l++;
+                    }
+                    checker[nums[l]]--;
+                    l++;
+                }
+                ans = max(ans,r-l+1);
+        }
+        return ans;
+
+    }
+    long long countSubarrays(vector<int>& nums, int k) {
+        int maximum = *max_element(nums.begin(),nums.end());
+        int end = nums.size(),ans = 0,count=0;
+        for(int left =0, right = 0; right<end; right++)
+        {
+            if(maximum == nums[right])
+                count++;
+            
+            if(count>=k){
+                if(nums[left]==count)
+                    count--;
+                left++;
+                ans += end-right;
+            }
+            
+        }   
+        return ans;
+    }
+
+    long long countSubarrays(vector<int>& nums, int minK, int maxK) {
+        long long res = 0;
+        int bad_idx = -1, left_idx = -1, right_idx = -1;
+        long long end = nums.size();   
+        for (long long  i = 0; i < end; i++)
+        {
+            if(!(minK<= nums[i] && nums[i]<=maxK))
+                bad_idx = i;
+            
+            if(nums[i] == minK)
+                left_idx = i;
+            if(nums[i] == maxK)
+                right_idx = i;
+            
+            res += max(0,min(left_idx,right_idx)-bad_idx);
+        }
+        return res;
+    }
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int,int> heelo;
+        int end = nums.size();
+        heelo.reserve(end);
+        for (int i = 0; i < end; i++)
+        {
+            heelo[nums[i]]++;
+            if(heelo[nums[i]]>1)
+                return true;
+        }
+        return false;
+        
+    }
+    bool isAnagram(string s, string t) {
+        if(s.length()!=t.length())   
+            return false;
+        int end =s.length();
+        unordered_map<char,int> map1,map2;
+        for (int i = 0; i < end; i++)
+        {
+            map1[s[i]]++;
+            map2[t[i]]++;
+        }
+        for (int i = 0; i < end; i++)
+        {
+            if(map1[s[i]]!=map2[s[i]])
+                return false;
+        }
+        return true;
+
+        //floowing is a better way
+        // sort(s.begin(),s.end());
+        // sort(t.begin(),t.end());
+        // if(s==t)return true;
+        // return false;    
+    }
+    int lengthOfLastWord(string s) {
+        int y = s.length(),count = 0;
+        while(s[y] == ' ' || s[y] == '\0') y--;
+        while(s[y] != ' '){
+            y--;
+            count++;
+            if(y<0)
+                return count;
+        }
+        return count;
+    }
+
+    bool isIsomorphic(string s, string t) {
+        vector<int> alpha,beta;
+        alpha.resize(27);
+        beta.resize(27);
+        int end = s.length();
+        for (int i = 0; i < end; i++)
+        {
+            if(alpha[s[i] - 'a'] !=beta[t[i] - 'a'])
+                return false;
+            alpha[s[i] - 'a']++;
+            beta[t[i] - 'a']++;
+        }
+        sort(alpha.begin(),alpha.end());
+        sort(beta.begin(),beta.end());
+        for (int i = 0; i < alpha.size(); i++)
+            if(!alpha[i]==beta[i])
+                return false;
+        
+        return true;
+        
+        
+    }
+    string makeGood(string s) {
+        int end =s.length();
+        bool capital = false;
+        for (int i = 1; i < end; i++)
+        {
+            if(s[i-1]-s[i] == 32){
+                s.erase(i-1,2);
+                end-=2;
+                i=0;
+            }         
+        }
+        return s;
+        
+    }
+    int timeRequiredToBuy(vector<int>& tickets, int k) {
+        int end = tickets.size(), time = 0,iter = 0;
+        while(tickets[k]!=0){
+            if(iter == end)
+                iter = 0;
+            if(tickets[iter] == 0){
+                iter++;
+                continue;
+            }
+            --tickets[iter++];
+            time++;
+        }
+        return time;
+    }
+    string removeKdigits(string num, int k) {
+        while(num[k] == '0')
+            k++;
+        num = num.substr(k,num.length()-k);
+        sort(num.begin(),num.end());
+        
+        return num;
+        
+    }
+    int dfs(TreeNode* passed, int pathsum){
+        if(!passed)
+            return 0;
+        
+        pathsum = pathsum*10 + passed->val;
+
+        if(!passed->left && !passed->right)
+            return pathsum;
+        
+        return dfs(passed->left,pathsum)+dfs(passed->right,pathsum);
+    }
+    int sumNumbers(TreeNode* root) {
+       return dfs(root,0);
+    }
 };
 
 int main()
 {
     
-    vector<int> a ={1,2,3,2};
-    Solution().findDuplicate(a);
+    std::vector<int> arr = {4,9,0,5,1};
+    TreeNode* root = constructTree(arr);
+
+    cout<<Solution().sumNumbers(root);
+
 
 }
