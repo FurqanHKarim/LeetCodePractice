@@ -8,6 +8,8 @@
 #include <queue>
 #include <unordered_map>
 #include <cmath>
+#include <stdio.h>
+#include <stdint.h>
 using namespace std;
 
 
@@ -1138,16 +1140,80 @@ public:
             }
             return hello;
     }
+    int singleNumber(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        int okay = 0;
+        for(int i = 0,a=nums.size();i<a; i++)
+            okay = okay^nums[i];
+        return okay;
+    }
+
+    int hammingWeight(int n) {
+        int sum = 0;
+        for(int i=0,a = 8*sizeof(n);i<a;i++)
+            if(n&(1<<i))
+                sum++;
+        return sum;
+    }
+    
+    vector<int> countBits(int n) {
+        std:: vector<int> ans(n + 1, 0);
+        cout<<"i \t\ti>>1\t\tans[i>>1]\t\t(i&1)"<<endl;
+        for(int i = 1; i <= n; i++){
+            ans[i] = ans[i >> 1] + (i & 1);
+        cout<<i<<"\t\t"<<(i>>1)<<"\t\t"<<ans[i>>1]<<"\t\t"<<(i&1)<<endl;
+        }
+        return ans;
+    }
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t ans = 0;
+        for(int i = 32; i>=0 ; i--)
+            ans |=  ((n>>i)&1)<<(31-i);
+        return ans;
+    }
+
+    int missingNumber1(vector<int>& nums) {
+        int ans = nums.size();
+        for(int i = 0,end = nums.size(); i < end; i++)
+            ans ^= i ^ nums[i];
+
+
+        return ans;
+
+    }
+
+    int missingNumber(vector<int>& nums) {
+    int sum = (nums.size()*(nums.size()+1))/2,sum_calc =0;
+
+    for(int i = 0,end = nums.size(); i < end; i++)
+        sum_calc += nums[i];
+
+    return sum - sum_calc;
+    }
+
+    int getSum(int a, int b) {
+        int sum = 0, carry = 0;
+
+        while(b){
+            sum |= (a^b);
+            carry = (a&b)<<1;
+            a = sum;
+            b = carry; 
+        }
+
+        return a;
+    }
 
 
 };
 
 int main()
 {
-    // vector<int> helllo = {10,3,8,9,4};
+    vector<int> helllo = {9,6,4,2,3,5,7,0,1};
     
-    // Solution().findRelativeRanks(helllo);
-    cout<<"HELLO"<<endl;
+    cout<<Solution().reverse1(123)<<endl;
+
     return 50;
 
 }
