@@ -910,15 +910,244 @@ public:
     int sumNumbers(TreeNode* root) {
        return dfs(root,0);
     }
+    int checkneighbour(vector<vector<int>>&grid,int x, int y){
+        int neighbour = 0;
+        int xstart = x==0?0:-1, xstop = (x+1)==grid.size()?0:+2;
+        while(xstart < xstop)
+        {
+            
+            int ystart = y==0?0:-1, ystop = (y+1)==grid[0].size()?0:+2;
+            while(ystart < ystop)
+            {
+                
+                if((xstart==ystart)||(!xstart && !ystart)||(abs(xstart-ystart) == 2))
+                {
+                    ystart++;
+                    continue;
+
+                }
+                if(abs(xstart-ystart) == 1){
+                    int i = x+xstart,j = y+ystart; 
+                        if(grid[i][j] == 1)
+                            neighbour++;
+                }
+                ystart++;
+            }
+            xstart++;
+        }
+        return neighbour;
+        
+    }
+    int islandPerimeter(vector<vector<int>>& grid) {
+        int neighbour = 0,blocks = 0;
+        for (int i = 0; i < grid.size(); i++)
+        {
+            for (int j = 0; j < grid[i].size(); j++)
+            {
+                if(grid[i][j] == 1){
+                    blocks++;
+                    neighbour += checkneighbour(grid,j,i);
+                }
+                
+            }
+            
+        }
+        return (blocks*4)-neighbour;
+    }
+
+    int tribonacci(int n) {
+        int a = 0, b = 1, c = 1 ;
+        
+        switch (n)
+        {
+        case 0:
+            return a;
+            break;
+        case 1:
+            return b;
+            break;
+        case 2:
+            return c;
+            break;
+        
+        default:
+            break;
+        }
+        int temp = c+b+a;
+        for (int i = 3; i <= n; i++)
+        {
+            temp = c+b+a;
+            a = b;
+            b = c;
+            c = temp;
+        }
+        return temp;
+
+    }
+    int minOperations(vector<int>& nums, int k) {
+        for(int x: nums)
+            k ^= x;
+        return __builtin_popcount(k);
+    }
+    long long wonderfulSubstrings(string word) {
+
+           int left = 0, right = 0, end = word.length();
+           while(right < end){
+
+           }
+           
+    }
+    string reversePrefix(string word, char ch) {
+
+        int a = word.find(ch);
+        if(a==-1)
+            return word;
+        for (int i = 0; i < a/2 +1; i++)
+            swap(word[i],word[a-i]);
+        
+        return word;
+        
+    }
+    int compareVersion1(string& v1, string& v2) {
+        const int n1=v1.size(), n2=v2.size();
+        int x1=0, x2=0;
+        for(int i=0, j=0; i<n1 || j<n2; i++, j++){
+            while(i<n1 && v1[i]!='.'){
+                x1=10*x1+(v1[i++]-'0');
+            }
+            while(j<n2 && v2[j]!='.'){
+                x2=10*x2+(v2[j++]-'0');
+            }
+            if (x1<x2) return -1;
+            else if (x1>x2) return 1;
+            x1=0;
+            x2=0;
+        }
+        return 0;
+    }
+    int compareVersion(string version1, string version2) {
+     const int limit1 = version1.size(),limit2 = version2.size();
+     int currentnumber1 = 0, currentnumber2 = 0;
+     for (int  i = 0, j = 0; i < limit1 || j < limit2; i++,j++)
+     {
+        while(i<limit1 && version1[i] != '.')
+            currentnumber1 = currentnumber1*10+(version1[i++]-'0');
+
+        while(j < limit2 && version2[j] != '.')
+            currentnumber2 = currentnumber2*10+(version2[j++]-'0');
+        
+        if(currentnumber1 < currentnumber2) return -1;
+        else if(currentnumber1 > currentnumber2) return 1;
+
+        currentnumber1 = 0;
+        currentnumber2 = 0;
+     }
+     return 0;
+    }
+    void deleteNode(ListNode* node) {
+        while(node->next){
+            node->val = node->next->val;
+            node = node->next;
+        }
+        delete(node);
+        node =NULL;
+        
+    }
+    int numRescueBoats(vector<int>& people, int limit) {
+        int end = people.size(), tempsum = 0, previoustempsum = 0;
+        int boats = 0;
+        sort(people.begin(),people.end());
+        for (int i = 0; i < end; i++)
+        {
+            tempsum += people[i];
+            if(tempsum>limit){
+                boats++;
+                tempsum -= previoustempsum;
+            }
+            previoustempsum = tempsum;
+        }
+        return boats+1;
+    }
+    
+    ListNode* removeNodes(ListNode* head) {
+        deque<int> temper;
+        ListNode* temp = head;
+        temper.push_front(temp->val);
+        temp = temp->next;
+        while(temp){
+            while(!temper.empty()?temper.front()<temp->val:0){
+                temper.pop_front();
+            }
+            temper.push_front(temp->val);
+            temp = temp->next;
+        }
+        ListNode* boi = new ListNode(temper.back());
+        temper.pop_back();
+        temp = boi;
+        while(!temper.empty()){
+            temp->next = new ListNode(temper.back());
+            temper.pop_back();
+            temp = temp->next;
+        }
+        return boi;
+    }
+    ListNode* doubleIt(ListNode* head) {
+        ListNode* temp = head;
+        if(!head ||head->val ==0)
+            return head;
+        if(head->val >= 5)
+            head = new ListNode((head->val<<1)/10,head);
+
+        while(temp->next){
+            temp->val = (temp->val<<1)-((temp->val<<1)/10)*10+(temp->next->val<<1)/10;
+            temp = temp->next;
+        }
+        temp->val = (temp->val<<1)%10;
+        return head;
+    }
+    vector<string> findRelativeRanks(vector<int>& score) {
+        int end = score.size();
+        vector<string> hello;
+        hello.reserve(end);
+        vector<int> temp = score;
+        sort(temp.begin(),temp.end());
+        map<int,int> MAP;
+        int position = 0;
+        for (int i = end - 1; i >= 0; i--)
+            MAP[temp[i]] = position++; 
+        
+        
+        
+        
+        for(int i = 0;i<end;i++)
+            switch (MAP[score[i]])
+            {
+            case 0:
+                hello.push_back("Gold Medal");
+                break;
+            case 1:
+                hello.push_back("Silver Medal");
+                break;
+            case 2:
+                hello.push_back("Bronze Medal");
+                break;
+            
+            default:
+                hello.push_back(to_string(MAP[score[i]]+1));
+                break;
+            }
+            return hello;
+    }
+
+
 };
 
 int main()
 {
+    // vector<int> helllo = {10,3,8,9,4};
     
-    std::vector<int> arr = {4,9,0,5,1};
-    TreeNode* root = constructTree(arr);
-
-    cout<<Solution().sumNumbers(root);
-
+    // Solution().findRelativeRanks(helllo);
+    cout<<"HELLO"<<endl;
+    return 50;
 
 }
