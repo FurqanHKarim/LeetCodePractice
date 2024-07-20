@@ -1204,15 +1204,184 @@ public:
 
         return a;
     }
+    void rotate(vector<vector<int>>& matrix) {
+        int end = matrix.size();
+        for (int i = 0; i < end; i++)
+            for (int j = 0; j < i; j++)
+                std::swap(matrix[i][j],matrix[j][i]);
+        
+        for (int i = 0; i < end; i++)
+            std::reverse(matrix[i].begin(),matrix[i].end());
+        
+    }
+    
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        std::ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        vector<int> result;
+        result.reserve(matrix[0].size()*matrix.size());
+        int left = 0, right = matrix[0].size();
+        int top = 0, bottom = matrix.size();
+        while(left<right & top<bottom){
+            for(int i = left; i<right; i++)
+                result.push_back(matrix[top][i]);
+            top++;
+            
+            for(int i = top; i<bottom; i++)
+                result.push_back(matrix[i][right-1]);
+            right--;
 
+            if(!(left<right & top<bottom))
+                break;
+            
+            for(int i = right-1; i>=left; i--)
+                result.push_back(matrix[bottom-1][i]);
+            bottom--;
 
+            for(int i = bottom-1; i>=top; i--)
+                result.push_back(matrix[i][left]);
+            left++;
+        }
+        return result;
+
+    }
+
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        int row = matrix.size(), column = matrix[0].size();
+        vector<int> luckyboys;
+        luckyboys.reserve(row);
+        for (int i = 0; i < row; i++)   
+        {
+            bool maxcheck = true;
+            int wut = std::min_element(matrix[i].begin(),matrix[i].end())-matrix[i].begin();
+            for (int j = 0; j < row; j++)
+            {
+                if(matrix[i][wut]<matrix[j][wut])
+                    maxcheck = false;
+
+            }
+            if(maxcheck)
+                luckyboys.push_back(matrix[i][wut]);
+            
+        }
+
+        return luckyboys;
+        
+    }
+    int sum_squared_digits(int input){
+        int result = 0;
+        while(input !=0){
+            result += (input%10)*(input%10);
+            input /=10;
+        }
+        return result;
+    }
+    bool isHappy(int n) {
+        
+        int slow = n, fast = n;
+        while(fast != 1)
+        {
+            slow = sum_squared_digits(slow);
+            fast = sum_squared_digits(sum_squared_digits(fast));
+            if(slow == fast & slow!=1)
+                return false;
+        }
+        
+        return true;
+    }
+
+    vector<int> plusOne(vector<int>& digits) {
+
+        vector<int>::iterator last = digits.end();
+        last--;
+        (*last) = *last+1;
+        while((*last)/10)
+        {
+            *last %= 10;
+            if(last == digits.begin())
+            {
+                digits.insert(digits.begin(),1);
+                return digits;
+            }
+            last--;
+            (*last)++;
+            
+        }
+        return digits;
+    }
+
+    
+    double myPowmine(double x, long n) {
+        // std::ios_base::sync_with_stdio(false);
+        // cin.tie(NULL);
+        if(n == 0) return 1;
+        if(n == 1 || x == 1) return x;
+        cout<<x<<"\t"<<n<<endl;
+        if(n/abs(n) == -1)
+            return myPow(1/x,(-1)*n);
+        
+        double temp = x;
+        if(n&1)
+        {
+            x = myPow(x*x,(n&1) ? ((n-1)/2):n/2);
+            x *= temp;
+        }
+        else
+        {
+            x = myPow(x*x,n/2); 
+        }
+        
+        return x;
+    }
+    
+    double myPow(double x, int n) {
+        std::ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        long long y = n;
+        if(y<0)
+            y = -y;
+        double ans = 1;
+        while(y)
+        {
+            if(y&1)
+                ans = ans*x;
+
+            x *= x;
+            y >>=1;
+        }
+        return ans;
+    }
+    
+    string multiply(string num1, string num2) {
+        int number1 = 0, number2 = 0;
+        for (int i = 0; i < num1.size(); i++)
+        {
+            number1 *= 10;
+            number1 += num1[i] - '0';
+        }
+        for (int i = 0; i < num2.size(); i++)
+        {
+            number2 *= 10;
+            number2 += num2[i] - '0';
+        }
+
+        number1 *= number2;
+        string answer;
+        while(number1){
+            answer.insert(answer.begin(),((number1%10) + '0'));
+            number1/=10;
+        }
+
+        return answer;
+        
+    }
 };
 
 int main()
 {
-    vector<int> helllo = {9,6,4,2,3,5,7,0,1};
-    
-    cout<<Solution().reverse1(123)<<endl;
+    vector<vector<int>> helllo = {{1,10,4,2},{9,3,8,7},{15,16,17,12}};
+    vector<int> digit = {9,9} ;
+    cout<<Solution().myPow(2.10000,3)<<"Done"<<endl;
 
     return 50;
 
