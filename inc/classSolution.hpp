@@ -62,7 +62,7 @@ public:
     bool containsNearbyDuplicate(vector<int>& nums, int k);
     int countConsistentStrings(string allowed, vector<string>& words);
     vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries);
-
+    int longestSubarray(vector<int>& nums);
 
 
 

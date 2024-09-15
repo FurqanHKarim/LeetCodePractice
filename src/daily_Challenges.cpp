@@ -1015,3 +1015,17 @@ vector<int> Solution:: xorQueries(vector<int>& arr, vector<vector<int>>& queries
     return output;
     
 }
+
+int Solution:: longestSubarray(vector<int>& nums) {
+    int maximum = *max_element(nums.begin(),nums.end()), cnt = 0, ans = 0;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if(nums[i] == maximum)
+            cnt++;
+        else 
+            cnt = 0;
+        ans = max(ans,cnt);
+    }
+    
+    return ans;
+}   

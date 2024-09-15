@@ -7,9 +7,9 @@ using namespace std;
 int main()
 {
 
-    cout<<"This is finally inorder, done and dusted"<<endl;
-    printf("Sure it is Brother \n");
+    vector<int> arr = {1,2,3,3,2,2};
 
+    cout<<Solution().longestSubarray(arr);
     return 1;
 
 }

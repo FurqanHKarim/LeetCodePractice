@@ -21,5 +21,4 @@ target_link_libraries(${PROJECT_NAME} PUBLIC all_lib)
 
 
 # I just like this build system
-set(CMAKE_BUILD_TOOL "Ninja")
-
+set (CMAKE_GENERATOR "Ninja" CACHE INTERNAL "" FORCE)
