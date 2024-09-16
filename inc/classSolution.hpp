@@ -63,7 +63,7 @@ public:
     int countConsistentStrings(string allowed, vector<string>& words);
     vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries);
     int longestSubarray(vector<int>& nums);
-
+    int findMinDifference(vector<string>& timePoints);
 
 
     //!Neet Code Problems

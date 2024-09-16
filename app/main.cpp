@@ -7,9 +7,9 @@ using namespace std;
 int main()
 {
 
-    vector<int> arr = {1,2,3,3,2,2};
+    vector<string> arr = {"00:00","23:59","00:00"};
 
-    cout<<Solution().longestSubarray(arr);
+    cout<<Solution().findMinDifference(arr);
     return 1;
 
 }

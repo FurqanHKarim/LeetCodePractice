@@ -1029,3 +1029,20 @@ int Solution:: longestSubarray(vector<int>& nums) {
     
     return ans;
 }   
+
+int Solution:: findMinDifference(vector<string>& timePoints) {
+    vector<int> time_minutes;
+    int end = timePoints.size();
+    time_minutes.reserve(end);
+    for (size_t i = 0; i < end; i++)
+        time_minutes.push_back((int)((((timePoints[i][0]-'0')*10)+(timePoints[i][1]-'0'))*60 + ((timePoints[i][3]-'0')*10 +(timePoints[i][4]-'0'))));
+
+    sort(time_minutes.begin(),time_minutes.end());
+    int minimum = INT_MAX;
+    for (size_t i = 1; i < end; i++)
+        minimum = min(minimum,time_minutes[i]-time_minutes[i-1]);
+     
+    
+    return min(24 * 60 - time_minutes.back() + time_minutes.front(),minimum);
+    
+}
