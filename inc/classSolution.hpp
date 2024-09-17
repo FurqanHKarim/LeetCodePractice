@@ -64,6 +64,7 @@ public:
     vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries);
     int longestSubarray(vector<int>& nums);
     int findMinDifference(vector<string>& timePoints);
+    vector<string> uncommonFromSentences(string s1, string s2);
 
 
     //!Neet Code Problems

@@ -7,9 +7,10 @@ using namespace std;
 int main()
 {
 
-    vector<string> arr = {"00:00","23:59","00:00"};
+    string arr1 = "this apple is sweet";
+    string arr2 = "this apple is sour";
 
-    cout<<Solution().findMinDifference(arr);
+    Solution().uncommonFromSentences(arr1,arr2);
     return 1;
 
 }

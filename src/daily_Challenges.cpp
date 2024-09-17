@@ -1046,3 +1046,23 @@ int Solution:: findMinDifference(vector<string>& timePoints) {
     return min(24 * 60 - time_minutes.back() + time_minutes.front(),minimum);
     
 }
+
+vector<string> Solution:: uncommonFromSentences(string s1, string s2) {
+
+    unordered_map<string,int> words;
+    string temp_string;
+    vector<string> result;
+    stringstream temp_stream;
+    temp_stream<<s1;
+    temp_stream<<" ";
+    temp_stream<<s2;
+    while(temp_stream >>temp_string)
+        words[temp_string]++;
+    
+
+    for (const auto& pair:words)
+        if(pair.second == 1)
+            result.push_back(pair.first);
+    
+    return result;
+}
