@@ -60,6 +60,24 @@ vector<int> Solution:: twoSum(vector<int>& nums, int target) {
     
 }
 
+vector<vector<string>> Solution:: groupAnagrams(vector<string>& strs) {
+    unordered_map<string,vector<string>> mother_of_maps;
+    int end = strs.size();
+
+    for (size_t i = 0; i < end; i++)
+    {
+        string x = strs[i];
+        sort(x.begin(),x.end());
+        mother_of_maps[x].push_back(strs[i]);
+    }
+    
+    vector<vector<string>> answer;
+    for (auto  x:mother_of_maps)
+        answer.push_back(x.second);
+
+    return answer;
+}
+
 //! END of Array & Hashing Section
 
 

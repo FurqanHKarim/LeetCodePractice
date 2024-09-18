@@ -72,7 +72,7 @@ public:
     bool containsDuplicate(vector<int>& nums);
     bool isAnagram1(string s, string t);
     vector<int> twoSum(vector<int>& nums, int target);
-
+    vector<vector<string>> groupAnagrams(vector<string>& strs);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
