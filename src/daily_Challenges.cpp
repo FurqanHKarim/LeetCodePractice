@@ -1066,3 +1066,27 @@ vector<string> Solution:: uncommonFromSentences(string s1, string s2) {
     
     return result;
 }
+
+
+string Solution:: largestNumber(vector<int>& nums) {
+    
+    vector<string> nums_in_string;
+    int end = nums.size();
+    nums_in_string.reserve(end);
+    for (size_t i = 0; i < end; i++)
+        nums_in_string.push_back(to_string(nums[i]));
+
+    
+    sort(nums_in_string.begin(),nums_in_string.end(),[](const string& a,const string& b){
+        return ((b+a)<(a+b));});
+
+    string final_answer;
+    for (size_t i = 0; i < end; i++)
+        final_answer += nums_in_string[i];
+    
+    if(atoi(final_answer.c_str()) == 0)
+        return "0";
+
+    return final_answer;
+
+}

@@ -7,10 +7,9 @@ using namespace std;
 int main()
 {
 
-    string arr1 = "this apple is sweet";
-    string arr2 = "this apple is sour";
+    vector<int> numbers = {3,30,34,5,9};
 
-    Solution().uncommonFromSentences(arr1,arr2);
+    Solution().largestNumber(numbers);
     return 1;
 
 }
