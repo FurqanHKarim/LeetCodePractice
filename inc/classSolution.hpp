@@ -70,7 +70,8 @@ public:
     //!Neet Code Problems
     //!Array & Hashing Section
     bool containsDuplicate(vector<int>& nums);
-
+    bool isAnagram1(string s, string t);
+    vector<int> twoSum(vector<int>& nums, int target);
 
 
     //!Math and Geometry Section

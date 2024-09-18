@@ -20,6 +20,46 @@ bool Solution:: containsDuplicate(vector<int>& nums) {
     return false;
     
 }
+bool Solution:: isAnagram1(string s, string t) {
+    if(s.length()!=t.length())   
+        return false;
+    int end =s.length();
+    unordered_map<char,int> map1,map2;
+    for (int i = 0; i < end; i++)
+    {
+        map1[s[i]]++;
+        map2[t[i]]++;
+    }
+    for (int i = 0; i < end; i++)
+    {
+        if(map1[s[i]]!=map2[s[i]])
+            return false;
+    }
+    return true;
+    
+}
+vector<int> Solution:: twoSum(vector<int>& nums, int target) {
+
+    unordered_map<int,int> map_of_numbers;
+    int end = nums.size();
+    map_of_numbers.reserve(end);
+    for (size_t i = 0; i < end; i++)
+        map_of_numbers[nums[i]] = i;
+
+    vector<int> answer;
+    for (size_t i = 0; i < end; i++)
+    {
+        if(map_of_numbers[target - nums[i]] != 0){
+            answer.push_back(i);
+            answer.push_back(map_of_numbers[target - nums[i]]);
+            return answer;
+        }
+    }
+    
+    return answer;
+    
+}
+
 //! END of Array & Hashing Section
 
 
