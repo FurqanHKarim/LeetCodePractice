@@ -66,6 +66,7 @@ public:
     int findMinDifference(vector<string>& timePoints);
     vector<string> uncommonFromSentences(string s1, string s2);
     string largestNumber(vector<int>& nums);
+    vector<int> diffWaysToCompute(string expression);
 
     //!Neet Code Problems
     //!Array & Hashing Section
@@ -73,6 +74,7 @@ public:
     bool isAnagram1(string s, string t);
     vector<int> twoSum(vector<int>& nums, int target);
     vector<vector<string>> groupAnagrams(vector<string>& strs);
+    vector<int> topKFrequent(vector<int>& nums, int k);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

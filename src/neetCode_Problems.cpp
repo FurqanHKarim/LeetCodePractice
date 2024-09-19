@@ -78,6 +78,26 @@ vector<vector<string>> Solution:: groupAnagrams(vector<string>& strs) {
     return answer;
 }
 
+vector<int> Solution::topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int,int> map_of_numbers;
+    int end = nums.size();
+    for (size_t i = 0; i < end; i++)
+        map_of_numbers[nums[i]]++;
+    
+    vector<pair<int,int>> collection_of_pairs(map_of_numbers.begin(),map_of_numbers.end());
+    
+    sort(collection_of_pairs.begin(),collection_of_pairs.end(),[](const pair<int,int>& a, const pair<int,int>& b){
+        return a.second>b.second;
+    });  
+
+    vector<int> answer;
+    for (size_t i = 0; i < k; i++)
+        answer.push_back(collection_of_pairs[i].first);
+    
+    return answer;
+        
+}
+
 //! END of Array & Hashing Section
 
 
@@ -259,6 +279,7 @@ string Solution:: multiply(string num1, string num2) {
     return answer;
     
 }
+
 
 //! END of Math & Geometery Section
 

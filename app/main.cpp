@@ -7,9 +7,10 @@ using namespace std;
 int main()
 {
 
-    vector<int> numbers = {3,30,34,5,9};
+    vector<int> a = {1,1,1,2,2,3};
 
-    Solution().largestNumber(numbers);
+
+    Solution().topKFrequent(a,2);
     return 1;
 
 }
