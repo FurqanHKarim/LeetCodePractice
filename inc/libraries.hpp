@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include <algorithm>
+#include <numeric>
 #include <unordered_map>
 #include <map>
 #include <sstream>

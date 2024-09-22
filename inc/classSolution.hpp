@@ -67,6 +67,8 @@ public:
     vector<string> uncommonFromSentences(string s1, string s2);
     string largestNumber(vector<int>& nums);
     vector<int> diffWaysToCompute(string expression);
+    string shortestPalindrome(string s);
+    vector<int> lexicalOrder(int n);
 
     //!Neet Code Problems
     //!Array & Hashing Section

@@ -1090,3 +1090,38 @@ string Solution:: largestNumber(vector<int>& nums) {
     return final_answer;
 
 }
+
+
+string Solution::shortestPalindrome(string s) {
+    string a;
+    const int end = s.size();
+    int i = 0;
+    for (int j = end - 1; j >= 0; j--)
+        while(j>=0 && s[i]==s[j])
+            i++,j--;
+    if(i == end)
+        return s;
+    
+    string sub= s.substr(i), remain_rev=sub;
+
+    std::reverse(remain_rev.begin(), remain_rev.end());
+
+    return remain_rev + shortestPalindrome(s.substr(0, i)) + sub;
+    
+}
+
+vector<int> Solution::lexicalOrder(int n) {
+    vector<int> answer(n);
+    vector<string> temp_answer;
+    temp_answer.reserve(n);
+
+
+    for (size_t i = 1; i <= n; i++)
+        temp_answer.push_back(to_string(i));
+    
+    sort(temp_answer.begin(),temp_answer.end());
+    
+    transform(temp_answer.begin(),temp_answer.end(),answer.begin(),[](string a){ return std::stoi(a);});
+
+    return answer;
+}

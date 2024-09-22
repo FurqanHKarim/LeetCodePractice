@@ -7,10 +7,11 @@ using namespace std;
 int main()
 {
 
-    vector<int> a = {1,1,1,2,2,3};
+    string testing = "abcd";
 
 
-    Solution().topKFrequent(a,2);
+    vector<int> boi = Solution().lexicalOrder(10);
+
     return 1;
 
 }
