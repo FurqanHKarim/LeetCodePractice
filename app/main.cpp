@@ -7,10 +7,10 @@ using namespace std;
 int main()
 {
 
-    string testing = "abcd";
+    vector<int> arr1 = {1,10,100},arr2 = {1000};
 
 
-    vector<int> boi = Solution().lexicalOrder(10);
+    vector<int> boi(Solution().longestCommonPrefix(arr1,arr2));
 
     return 1;
 

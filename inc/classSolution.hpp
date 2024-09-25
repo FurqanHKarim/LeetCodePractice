@@ -69,6 +69,8 @@ public:
     vector<int> diffWaysToCompute(string expression);
     string shortestPalindrome(string s);
     vector<int> lexicalOrder(int n);
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2);
+
 
     //!Neet Code Problems
     //!Array & Hashing Section

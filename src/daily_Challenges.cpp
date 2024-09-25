@@ -1125,3 +1125,40 @@ vector<int> Solution::lexicalOrder(int n) {
 
     return answer;
 }
+
+int Solution::longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+    vector<string> Arr1(arr1.size()), Arr2(arr2.size());
+    int number_of_substrings = 0;
+    unordered_map<int,int> ARR1,ARR2;
+    for (auto &&i : arr1)
+    {
+        int temp = i;
+        while(temp){
+            ARR1[temp]++;
+            temp /=10;
+        }
+    }
+    for (auto &&i : arr2)
+    {
+        int temp = i;
+        while(temp){
+            ARR2[temp]++;
+            temp /=10;
+        }
+    }
+    for (auto &&i : ARR2)
+    {
+        if(ARR1.find(i.first)!= ARR1.end()){
+            number_of_substrings = max(number_of_substrings,i.first);
+        }
+        
+    }
+    int answer;
+    while (number_of_substrings)
+    {
+        answer++;
+        number_of_substrings /=10;
+    }
+    
+    return answer;
+} 
