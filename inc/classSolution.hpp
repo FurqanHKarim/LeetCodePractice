@@ -80,6 +80,8 @@ public:
     vector<vector<string>> groupAnagrams(vector<string>& strs);
     vector<int> topKFrequent(vector<int>& nums, int k);
     vector<int> productExceptSelf1(vector<int>& nums);//did this again using std algo
+    bool checkValid(vector<vector<int>>& matrix);
+    bool isValidSudoku(vector<vector<char>>& board);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

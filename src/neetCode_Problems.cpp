@@ -115,6 +115,67 @@ vector<int> Solution:: productExceptSelf1(vector<int>& nums) {
     //turns out this is not really an efficient approach why beacuse it uses lambdas and transform is essentially a complete
     // iteration over the vector and obviously is time consuming
 }
+
+    bool Solution:: checkValid(vector<vector<int>>& matrix) {
+        int end = matrix.size();
+        vector<set<int>> row_dict(end),column_dict(end);
+        set<int> comparison;
+        for (size_t i = 1; i <= end; i++)
+            comparison.insert(i);
+        
+        for (size_t i = 0; i < matrix.size(); i++)
+            for (size_t j = 0; j < matrix[i].size(); j++)
+            {
+                row_dict[i].insert(matrix[i][j]);
+                column_dict[i].insert(matrix[j][i]);
+            }
+        
+        for (size_t i = 0; i < end; i++)
+            if(column_dict[i] != comparison || row_dict[i]!=comparison)  
+                return false;
+        
+        return true;
+
+        
+    }
+
+
+    bool Solution:: isValidSudoku(vector<vector<char>>& board) {
+        int end = board.size();
+        vector<unordered_map<char,int>> row_dict(end),column_dict(end);
+        unordered_map<char,int> box_dict;
+        
+        for (size_t i = 0; i < 9; i+=3)
+        for (size_t j = 0; j < 9; j+=3){
+            for (size_t row = 0; row < 3; row++)
+                for (size_t column = 0; column < 3; column++)
+                {
+                    //following to check if there is repeatition in row or column
+                    
+                    if(board[column+j][row+i] != '.'){
+                        column_dict[row+i][board[column+j][row+i]]++;
+                        if(column_dict[row+i][board[column+j][row+i]]>1) return false;
+                    }
+                    
+                    
+                    if(board[row+i][column+j] == '.')  continue;
+                    row_dict[row+i][board[row+i][column+j]]++;
+                    
+                    if(row_dict[row+i][board[row+i][column+j]] >1 ) 
+                        return false;
+
+                    //foloowing to check if there is repeatition in a box
+                    box_dict[board[row+i][column+j]]++;
+                    if(box_dict[board[row+i][column+j]]>1)
+                        return false;
+                    
+                }
+            box_dict.clear();
+        }
+        
+        return true;
+    
+}
 //! END of Array & Hashing Section
 
 
