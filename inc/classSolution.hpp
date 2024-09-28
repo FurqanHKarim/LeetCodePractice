@@ -79,6 +79,7 @@ public:
     vector<int> twoSum(vector<int>& nums, int target);
     vector<vector<string>> groupAnagrams(vector<string>& strs);
     vector<int> topKFrequent(vector<int>& nums, int k);
+    vector<int> productExceptSelf1(vector<int>& nums);//did this again using std algo
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

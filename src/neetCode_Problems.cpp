@@ -98,6 +98,23 @@ vector<int> Solution::topKFrequent(vector<int>& nums, int k) {
         
 }
 
+vector<int> Solution:: productExceptSelf1(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> prefix(n),suffix(n);
+    auto multiply = [](int a,int b){ return a*b;};
+
+    suffix[n-1] = 1;//this isnt exactly a suffix product rather shifted by 1
+    std::transform(nums.rbegin(),nums.rend()-1,suffix.rbegin(),suffix.rbegin()+1,multiply);
+    
+    prefix[0] = 1;
+    std::transform(nums.begin(),nums.end()-1,prefix.begin(),prefix.begin()+1,multiply);
+    
+    std::transform(prefix.begin(),prefix.end(),suffix.begin(),nums.begin(),multiply);
+    return nums;
+        
+    //turns out this is not really an efficient approach why beacuse it uses lambdas and transform is essentially a complete
+    // iteration over the vector and obviously is time consuming
+}
 //! END of Array & Hashing Section
 
 
