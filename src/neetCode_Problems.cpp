@@ -176,6 +176,29 @@ vector<int> Solution:: productExceptSelf1(vector<int>& nums) {
         return true;
     
 }
+
+int longestConsecutive(vector<int>& nums) {
+        std::sort(nums.begin(),nums.end());
+        int end = nums.size(),longer = 0, answer = 0 ;
+        if(end == 0)
+            return 0;
+        
+        for (size_t i = 1; i < end; i++)
+        {   
+            if(nums[i-1]  == nums[i])
+                continue;
+            if(nums[i-1] +1 == nums[i])
+                longer++;
+            else
+                longer = 0;
+
+            if (answer<longer)
+                answer = longer;
+
+
+        }
+        return answer+1;
+    }
 //! END of Array & Hashing Section
 
 

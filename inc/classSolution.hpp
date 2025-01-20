@@ -82,6 +82,7 @@ public:
     vector<int> productExceptSelf1(vector<int>& nums);//did this again using std algo
     bool checkValid(vector<vector<int>>& matrix);
     bool isValidSudoku(vector<vector<char>>& board);
+    int longestConsecutive(vector<int>& nums);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
