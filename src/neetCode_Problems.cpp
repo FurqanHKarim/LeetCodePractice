@@ -177,7 +177,7 @@ vector<int> Solution:: productExceptSelf1(vector<int>& nums) {
     
 }
 
-int longestConsecutive(vector<int>& nums) {
+int Solution:: longestConsecutive(vector<int>& nums) {
         std::sort(nums.begin(),nums.end());
         int end = nums.size(),longer = 0, answer = 0 ;
         if(end == 0)
@@ -202,6 +202,21 @@ int longestConsecutive(vector<int>& nums) {
 //! END of Array & Hashing Section
 
 
+///
+//! Two Pointers Section
+//! Start of Two Pointers Section
+bool Solution:: isPalindrome(string s) {
+        string palin,revpalin;
+        palin.reserve(s.size());
+        revpalin.reserve(s.size());
+        for (auto &&i : s)
+            if(isalnum(i))
+                palin +=tolower(i);        
+        revpalin = palin;
+        std::reverse(revpalin.begin(),revpalin.end());
+        return revpalin == palin;
+}
+//! END of Two Pointers Section
 ///
 //! Math & Geometery Section
 //! Start of Math & Geometery Section

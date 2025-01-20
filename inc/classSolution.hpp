@@ -84,6 +84,9 @@ public:
     bool isValidSudoku(vector<vector<char>>& board);
     int longestConsecutive(vector<int>& nums);
 
+    //! Two Pointers
+    bool isPalindrome(string s);
+
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
     vector<int> spiralOrder(vector<vector<int>>& matrix);
