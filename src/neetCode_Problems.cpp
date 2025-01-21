@@ -216,6 +216,24 @@ bool Solution:: isPalindrome(string s) {
         std::reverse(revpalin.begin(),revpalin.end());
         return revpalin == palin;
 }
+
+vector<int> Solution:: twoSum2(vector<int>& numbers, int target) {
+        int left  = 0, right = numbers.size()-1 ,comparison;
+        comparison = numbers[left]+numbers[right];
+        while(comparison != target){
+            if(comparison < target)
+                left++;
+            else if(comparison > target)
+                right--;
+            
+            comparison = numbers[left]+numbers[right];
+        }
+        
+        vector<int> a;
+        a.push_back(left);
+        a.push_back(right);
+        return a;
+}
 //! END of Two Pointers Section
 ///
 //! Math & Geometery Section

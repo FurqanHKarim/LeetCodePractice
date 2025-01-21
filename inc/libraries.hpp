@@ -16,6 +16,7 @@
 
 
 #include <cmath>
+#include <compare>
 
 #include <stdio.h>
 #include <stdint.h>
