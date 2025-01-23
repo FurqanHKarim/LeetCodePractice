@@ -262,6 +262,17 @@ vector<vector<int>> Solution:: threeSum(vector<int>& nums) {
     }
     return answer;
 }
+
+int Solution:: maxArea(vector<int>& height) {
+    int l = 0,r = height.size()-1;
+    int answer = 0;
+    while(l<r){
+        int currentAns = (height[l]<height[r]?height[l]:height[r])*(r-l);
+        answer = currentAns>answer?currentAns:answer;
+        height[l]<height[r]?l++:r--;
+    }
+    return answer;
+}
 //! END of Two Pointers Section
 ///
 //! Math & Geometery Section
