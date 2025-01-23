@@ -86,7 +86,8 @@ public:
 
     //! Two Pointers
     bool isPalindrome(string s);
-    vector<int> twoSum2(vector<int>& numbers, int target); 
+    vector<int> twoSum2(vector<int>& numbers, int target);
+    vector<vector<int>> threeSum(vector<int>& nums); 
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

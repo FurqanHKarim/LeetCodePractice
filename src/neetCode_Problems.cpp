@@ -234,6 +234,34 @@ vector<int> Solution:: twoSum2(vector<int>& numbers, int target) {
         a.push_back(right);
         return a;
 }
+vector<vector<int>> Solution:: threeSum(vector<int>& nums) {
+    sort(nums.begin(),nums.end());
+    vector<vector<int>> answer;
+    for (size_t i = 0; i < nums.size()-2; i++)
+    {
+        if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+
+        int j  = i+1, k = nums.size()-1 ,comparison;
+        while(j<k){
+            comparison = nums[i] + nums[j] + nums[k];
+            if(comparison < 0)
+                j++;
+            else if(comparison > 0)
+                k--;
+            else {
+                answer.push_back({nums[i],nums[j],nums[k]});
+                j++;
+                while (nums[j] == nums[j-1] && j<k)
+                    j++;
+                
+            }
+            
+        }
+    }
+    return answer;
+}
 //! END of Two Pointers Section
 ///
 //! Math & Geometery Section
