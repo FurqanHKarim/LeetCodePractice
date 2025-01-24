@@ -273,8 +273,51 @@ int Solution:: maxArea(vector<int>& height) {
     }
     return answer;
 }
+
+
 //! END of Two Pointers Section
 ///
+
+
+//! Stack
+//! Start of Stack
+///
+bool Solution:: isValid(string s) {
+    stack<char> stuff;
+    int end = s.size();
+    stuff.empty();
+    if(end == 1)
+        return false;
+    for (size_t i = 0; i < end; i++)
+    {
+        if(s[i] == '(' || s[i] == '{' || s[i] == '[' )
+            stuff.push(s[i]);
+        else {
+            if(stuff.empty())
+                return false;
+            else {
+
+                char test = stuff.top();
+                stuff.pop();
+                if((s[i] == ')' && test!='(') || (s[i] == '}' && test!='{') || (s[i] == ']' && test!='['))
+                    return false;
+            }
+        }
+        
+    }
+
+    if(stuff.size())
+        return false;
+        
+    return true;
+    
+    
+}
+
+
+
+//! END of Stack
+
 //! Math & Geometery Section
 //! Start of Math & Geometery Section
 

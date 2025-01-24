@@ -89,6 +89,9 @@ public:
     vector<int> twoSum2(vector<int>& numbers, int target);
     vector<vector<int>> threeSum(vector<int>& nums);
     int maxArea(vector<int>& height); 
+    
+    //! Stack
+    bool isValid(string s);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
