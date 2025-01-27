@@ -378,6 +378,23 @@ vector<string> Solution:: generateParenthesis(int n) {
     
 }
 
+vector<int> Solution:: dailyTemperatures(vector<int>& temperatures) {
+        int end = temperatures.size();
+        vector<int> answer(end);
+        stack<int> days;
+        for (size_t i = 0; i < end; i++)
+        {
+            while(!days.empty() && temperatures[days.top()]<temperatures[i]){
+                answer[days.top()] = i-days.top();
+                days.pop();
+            }
+            days.push(i);
+        }
+        return answer;
+}
+    
+    
+
 //! END of Stack
 
 //! Math & Geometery Section
