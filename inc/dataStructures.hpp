@@ -20,5 +20,36 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+class MinStack {
+    private:
+    stack<pair<int,int>> node;
+
+    
+public:
+    MinStack() { 
+
+    }
+    
+    void push(int val) {
+        if(node.empty()){
+            node.push({val,val});
+        }
+        else
+            node.push({val,min(val,node.top().second)});
+        
+    }
+    
+    void pop() {
+        node.pop();
+    }
+    
+    int top() {
+        return node.top().first;
+    }
+    
+    int getMin() {
+       return node.top().second;
+    }
+};
 
 #endif // !STRUCTURES
