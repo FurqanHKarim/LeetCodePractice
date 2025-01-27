@@ -285,7 +285,6 @@ int Solution:: maxArea(vector<int>& height) {
 bool Solution:: isValid(string s) {
     stack<char> stuff;
     int end = s.size();
-    stuff.empty();
     if(end == 1)
         return false;
     for (size_t i = 0; i < end; i++)
@@ -314,6 +313,50 @@ bool Solution:: isValid(string s) {
     
 }
 
+int Solution:: evalRPN(vector<string>& tokens){
+    stack<int> stuff;
+    for (auto &&i : tokens)
+    {
+    
+        int first = 0, result = 0;
+        switch (*(i.end()-1))
+        {
+        case '+':
+            first = stuff.top();
+            stuff.pop();
+            result = first + stuff.top();
+            stuff.pop();
+            stuff.push(result);
+            break;
+        case '-':
+            first = stuff.top();
+            stuff.pop();
+            result = stuff.top() - first;
+            stuff.pop();
+            stuff.push(result);
+            break;
+        case '*':
+            first = stuff.top();
+            stuff.pop();
+            result = first * stuff.top();
+            stuff.pop();
+            stuff.push(result);
+            break;
+        case '/':
+            first = stuff.top();
+            stuff.pop();
+            result = stuff.top()/first;
+            stuff.pop();
+            stuff.push(result);
+            break;
+        
+        default:
+            stuff.push(stoi(i));
+            break;
+        }
+    }
+    return stuff.top();
+}
 
 
 //! END of Stack

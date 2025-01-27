@@ -2,7 +2,6 @@
 #ifndef STRUCTURES
 #define STRUCTURES
 
-
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -22,34 +21,15 @@ struct ListNode {
 
 class MinStack {
     private:
-    stack<pair<int,int>> node;
+    std::stack<std::pair<int,int>> node;
 
     
 public:
-    MinStack() { 
-
-    }
-    
-    void push(int val) {
-        if(node.empty()){
-            node.push({val,val});
-        }
-        else
-            node.push({val,min(val,node.top().second)});
-        
-    }
-    
-    void pop() {
-        node.pop();
-    }
-    
-    int top() {
-        return node.top().first;
-    }
-    
-    int getMin() {
-       return node.top().second;
-    }
+    MinStack();
+    void push(int val);
+    void pop();
+    int top();
+    int getMin();
 };
 
 #endif // !STRUCTURES

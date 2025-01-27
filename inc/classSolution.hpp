@@ -92,6 +92,7 @@ public:
     
     //! Stack
     bool isValid(string s);
+    int evalRPN(vector<string>& tokens);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

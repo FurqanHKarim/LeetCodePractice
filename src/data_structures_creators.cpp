@@ -48,3 +48,28 @@ ListNode* arrayToLinkedList(vector<int>arr) {
   // Return the actual list (skip the dummy node)
   return dummy.next;
 }
+
+MinStack:: MinStack() { 
+
+}
+    
+void MinStack:: push(int val) {
+    if(node.empty()){
+        node.push({val,val});
+    }
+    else
+        node.push({val,min(val,node.top().second)});
+    
+}
+    
+void MinStack:: pop() {
+    node.pop();
+}
+
+int MinStack:: top() {
+    return node.top().first;
+}
+
+int MinStack:: getMin() {
+    return node.top().second;
+}
