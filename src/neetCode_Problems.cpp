@@ -358,6 +358,25 @@ int Solution:: evalRPN(vector<string>& tokens){
     return stuff.top();
 }
 
+void backtracker(vector<string>& answer, int left, int right, string current, int n){
+    if(current.length() == 2*n){
+        answer.push_back(current);
+        return;
+    }
+
+    if(left<n)
+        backtracker(answer,left+1,right,current+'(',n);
+    
+    if(right<left)
+        backtracker(answer,left,right+1,current+')',n);
+}
+vector<string> Solution:: generateParenthesis(int n) {
+    vector<string> answer;
+
+    backtracker(answer,0,0,"",n);
+    return answer;
+    
+}
 
 //! END of Stack
 

@@ -93,6 +93,7 @@ public:
     //! Stack
     bool isValid(string s);
     int evalRPN(vector<string>& tokens);
+    vector<string> generateParenthesis(int n);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
