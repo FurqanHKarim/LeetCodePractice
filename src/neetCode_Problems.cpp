@@ -393,12 +393,30 @@ vector<int> Solution:: dailyTemperatures(vector<int>& temperatures) {
         return answer;
 }
     
-    
+int Solution:: carFleet(int target, vector<int>& position, vector<int>& speed) {
+    vector<pair<int,int>> cars;
+    int end = position.size();
+    for (size_t i = 0; i < end; i++)
+        cars.push_back({position[i],speed[i]});
+    sort(cars.rbegin(),cars.rend());
 
+    vector<double> time;
+    for(auto car : cars)
+    {
+        time.push_back((double)(target-car.first)/car.second);
+
+        if(time.size()>=2 && time.back()<=time[time.size()-2])
+            time.pop_back();
+    }
+
+    return time.size();
+}    
+ 
 //! END of Stack
 
 //! Math & Geometery Section
 //! Start of Math & Geometery Section
+
 
 void Solution:: rotate(vector<vector<int>>& matrix) {
     int end = matrix.size();

@@ -95,6 +95,7 @@ public:
     int evalRPN(vector<string>& tokens);
     vector<string> generateParenthesis(int n);
     vector<int> dailyTemperatures(vector<int>& temperatures);
+    int carFleet(int target, vector<int>& position, vector<int>& speed);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
