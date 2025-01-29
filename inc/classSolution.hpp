@@ -97,6 +97,9 @@ public:
     vector<int> dailyTemperatures(vector<int>& temperatures);
     int carFleet(int target, vector<int>& position, vector<int>& speed);
 
+    //! Binary Search
+    int search(vector<int>& nums, int target);
+
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
     vector<int> spiralOrder(vector<vector<int>>& matrix);

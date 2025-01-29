@@ -414,6 +414,24 @@ int Solution:: carFleet(int target, vector<int>& position, vector<int>& speed) {
  
 //! END of Stack
 
+//! Binary Search Section
+//! Start of Binary Search Section
+int Solution:: search(vector<int>& nums, int target) {
+    int left = 0, right = nums.size();
+    int i = ((right - left)/2)+left;
+    while(target != nums[i]){
+        if((left+1) == right){
+            return -1;
+        }
+        right = target<nums[i]?i:right;
+        left = target>nums[i]?i:left;
+        i = ((right - left)/2)+left;
+    }
+    return i;
+}
+
+//! END of Binary Search Section
+
 //! Math & Geometery Section
 //! Start of Math & Geometery Section
 
