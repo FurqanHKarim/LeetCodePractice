@@ -99,6 +99,7 @@ public:
 
     //! Binary Search
     int search(vector<int>& nums, int target);
+    bool searchMatrix(vector<vector<int>>& matrix, int target);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

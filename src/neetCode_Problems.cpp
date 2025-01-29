@@ -430,6 +430,45 @@ int Solution:: search(vector<int>& nums, int target) {
     return i;
 }
 
+bool Solution:: searchMatrix(vector<vector<int>>& matrix, int target) {
+    
+        int left = 0, right = matrix.size();
+        int i = ((right - left)/2)+left, j =0;
+        if(right == 0){
+            return false;
+        }
+        while(target != matrix[i][j]){
+            if((left+1) == right){
+                break;
+            }
+            right = target<matrix[i][j]?i:right;
+            left = target>matrix[i][j]?i:left;
+            i = ((right - left)/2)+left;
+        }
+        if(matrix[i].size() == 1)
+            if(matrix[i][j] == target)
+                return true;
+            else
+                return false;
+        
+
+
+        left = 0, right = matrix[i].size();
+        j = ((right - left)/2)+left;
+        while(target != matrix[i][j]){
+            if((left+1) == right){
+                return false;
+            }
+            right = target<matrix[i][j]?j:right;
+            left = target>matrix[i][j]?j:left;
+            j = ((right - left)/2)+left;
+        }
+
+        return true;
+
+
+}
+
 //! END of Binary Search Section
 
 //! Math & Geometery Section
