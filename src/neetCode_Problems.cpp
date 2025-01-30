@@ -473,19 +473,19 @@ int Solution:: minEatingSpeed(vector<int>& piles, int h) {
     int left = 1, right = *max_element(piles.begin(),piles.end());
     int end = piles.size();
     int mid = 0 ;
-    int hours = 0;
-    while (hours != h)
+    double hours = 0;
+    while (left<=right)
     {
         hours = 0;
         mid = ((right+left)/2);
         for (size_t i = 0; i < end; i++)
             hours += ceil((double)piles[i]/mid);
         
-        right = hours<h?mid-1:right;
         left  = hours>h?mid+1:left;
+        right = hours<=h?mid-1:right;
         
     }
-    return mid;
+    return left;
 }
     
     
