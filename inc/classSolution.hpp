@@ -101,6 +101,7 @@ public:
     int search(vector<int>& nums, int target);
     bool searchMatrix(vector<vector<int>>& matrix, int target);
     int minEatingSpeed(vector<int>& piles, int h);
+    int findMin(vector<int>& nums);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

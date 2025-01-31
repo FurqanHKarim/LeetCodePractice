@@ -488,8 +488,19 @@ int Solution:: minEatingSpeed(vector<int>& piles, int h) {
     return left;
 }
     
-    
 
+int Solution:: findMin(vector<int>& nums) {
+    int left = 0, right = nums.size()-1;
+    int mid = 0;
+    while(left<right){
+        mid = left + (right-left)/2;
+        right = nums[mid]<=nums[right]?mid:right; 
+        left =  nums[mid]>nums[right]?mid+1:left; 
+
+    }
+    return nums[left];
+    
+}
 //! END of Binary Search Section
 
 //! Math & Geometery Section
