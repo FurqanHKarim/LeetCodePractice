@@ -103,6 +103,9 @@ public:
     int minEatingSpeed(vector<int>& piles, int h);
     int findMin(vector<int>& nums);
 
+    //!Sliding Window
+    int maxProfit(vector<int>& prices);
+
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
     vector<int> spiralOrder(vector<vector<int>>& matrix);

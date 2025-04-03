@@ -503,6 +503,23 @@ int Solution:: findMin(vector<int>& nums) {
 }
 //! END of Binary Search Section
 
+//! Sliding Window
+//! Start of Sliding Window
+int Solution::maxProfit(vector<int>& prices) {
+    int end = prices.size();
+    int buyAt = prices[0],profit = 0;
+    for (size_t i = 0; i < end; i++)
+        if (prices[i]<buyAt)
+            buyAt = prices[i];
+        else if (prices[i]-buyAt>profit)
+            profit = prices[i]-buyAt;
+        
+    return profit;
+    
+        
+}
+//! END of Sliding Window
+
 //! Math & Geometery Section
 //! Start of Math & Geometery Section
 
