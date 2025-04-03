@@ -1,6 +1,6 @@
-#include <../inc/libraries.hpp>
-#include <../inc/dataStructures.hpp>
-#include <../inc/classSolution.hpp>
+#include <libraries.hpp>
+#include <dataStructures.hpp>
+#include <classSolution.hpp>
 
 
 TreeNode* constructTree(const std::vector<int>& arr) {
