@@ -540,6 +540,22 @@ int Solution:: lengthOfLongestSubstring(string s) {
 }
 //! END of Sliding Window
 
+//! LinkedList Section
+//! Start of Linked List Section
+
+ListNode* Solution:: reverseList1(ListNode* head) {
+    ListNode *temp = head, *lastnode = NULL, *forward = NULL;
+    while(temp)
+    {
+        forward = temp->next;
+        temp->next = lastnode;
+        lastnode = temp;
+        temp = forward;
+    }
+    return lastnode;
+}
+//! END of Linked List
+
 //! Math & Geometery Section
 //! Start of Math & Geometery Section
 

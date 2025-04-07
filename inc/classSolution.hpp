@@ -107,6 +107,9 @@ public:
     int maxProfit(vector<int>& prices);
     int lengthOfLongestSubstring(string s);
 
+    //!LinkedList
+    ListNode* reverseList1(ListNode* head);
+
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);
     vector<int> spiralOrder(vector<vector<int>>& matrix);
