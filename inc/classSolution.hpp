@@ -105,6 +105,7 @@ public:
 
     //!Sliding Window
     int maxProfit(vector<int>& prices);
+    int lengthOfLongestSubstring(string s);
 
     //!Math and Geometry Section
     void rotate(vector<vector<int>>& matrix);

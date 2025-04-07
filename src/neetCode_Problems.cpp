@@ -518,6 +518,26 @@ int Solution::maxProfit(vector<int>& prices) {
     
         
 }
+
+int Solution:: lengthOfLongestSubstring(string s) {
+    int end = s.length();
+    set<char> mySet;
+    int left = 0, longest = 0;
+    for (size_t right = 0; right < end; right++)
+        if(mySet.count(s[right]) == 0){
+            mySet.insert(s[right]);
+            longest = longest<(right-left+1)?(right-left+1):longest;
+        }
+        else{
+            while(mySet.count(s[right]))
+                mySet.erase(s[left++]);
+            mySet.insert(s[right]);
+        }
+
+    return longest;
+    
+        
+}
 //! END of Sliding Window
 
 //! Math & Geometery Section
