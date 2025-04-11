@@ -198,7 +198,26 @@ int Solution:: longestConsecutive(vector<int>& nums) {
 
         }
         return answer+1;
+}
+
+string Solution:: encode(vector<string>& strs) {
+    string answer;
+    for(int i = 0; i<strs.size();i++){
+        answer += (strs[i]+'`');
     }
+    return answer;
+}
+
+vector<string> Solution:: decode(string s) {
+    vector<string> answer;
+    stringstream streamArg(s);
+    string inter;
+    while(getline(streamArg,inter,'`')){
+        answer.push_back(inter);
+    }
+    return answer;
+}
+
 //! END of Array & Hashing Section
 
 

@@ -83,6 +83,8 @@ public:
     bool checkValid(vector<vector<int>>& matrix);
     bool isValidSudoku(vector<vector<char>>& board);
     int longestConsecutive(vector<int>& nums);
+    string encode(vector<string>& strs);
+    vector<string> decode(string s);
 
     //! Two Pointers
     bool isPalindrome(string s);
@@ -106,6 +108,7 @@ public:
     //!Sliding Window
     int maxProfit(vector<int>& prices);
     int lengthOfLongestSubstring(string s);
+    int characterReplacement(string s, int k);
 
     //!LinkedList
     ListNode* reverseList1(ListNode* head);
