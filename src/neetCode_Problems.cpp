@@ -293,6 +293,23 @@ int Solution:: maxArea(vector<int>& height) {
     return answer;
 }
 
+int Solution:: trap(vector<int>& height) {
+    int end = height.size();
+    vector<int> right(end,0), left(end,0);
+    int answer = 0;
+    int leftHigh = 0, rightHigh = 0;
+    for (int i = 0; i < end; i++)
+    {
+        left[i] = leftHigh;
+        right[end -i -1] = rightHigh;
+        leftHigh  = height[i]>leftHigh?height[i]:leftHigh;
+        rightHigh = height[end-i-1]>rightHigh?height[end-i-1]:rightHigh;
+    }
+    for (int i = 0; i < end; i++)
+        answer += min(right[i],left[i]) - height[i]>0?min(right[i],left[i]) - height[i]:0;
+    
+    return answer;
+}
 
 //! END of Two Pointers Section
 ///
